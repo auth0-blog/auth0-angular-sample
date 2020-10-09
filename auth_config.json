@@ -1,0 +1,6 @@
+{
+  "domain": "YOUR_AUTH0_DOMAIN",
+  "clientId": "YOUR_AUTH0_CLIENT_ID",
+  "audience": "https://express.sample",
+  "serverUrl": "http://localhost:6060"
+}

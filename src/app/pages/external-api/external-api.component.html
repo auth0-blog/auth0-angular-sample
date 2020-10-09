@@ -1,20 +1,21 @@
+<!--src/app/pages/external-api/external-api.component.html-->
+
 <div>
   <h1>External API</h1>
   <p>
-    You use will use a button to call an external API using an access token, and
-    the API will validate it using the API's audience value.
-    <br />
-    <strong>This route should be protected</strong>.
+    Use these buttons to call an external API. The protected API call has an
+    access token in its authorization header. The API server will validate the
+    access token using the Auth0 Audience value.
   </p>
   <div
     class="btn-group mt-5"
     role="group"
     aria-label="External API Requests Examples"
   >
-    <button type="button" class="btn btn-primary">
+    <button (click)="callApi()" type="button" class="btn btn-primary">
       Get Public Message
     </button>
-    <button type="button" class="btn btn-primary">
+    <button (click)="callSecureApi()" type="button" class="btn btn-primary">
       Get Protected Message
     </button>
   </div>
