@@ -26,6 +26,7 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { CallbackComponent } from './components/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     AuthNavComponent,
+    CallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     // 👇 update AuthModule
     AuthModule.forRoot({
       ...env.auth,
+      redirectUri: `${window.location.origin}/callback`,
       httpInterceptor: {
         allowedList: [`${env.dev.serverUrl}/api/messages/protected-message`],
       },
