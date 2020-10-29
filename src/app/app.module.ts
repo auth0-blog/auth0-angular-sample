@@ -26,7 +26,6 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-import { CallbackComponent } from './components/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { CallbackComponent } from './components/callback/callback.component';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     AuthNavComponent,
-    CallbackComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { ExternalApiComponent } from 'src/app/pages/external-api/external-api.component';
+import { LoadingComponent } from 'src/app/components/loading/loading.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
-import { CallbackComponent } from 'src/app/components/callback/callback.component';
 
 const routes: Routes = [
   {
@@ -17,8 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'callback',
-    component: CallbackComponent,
-    canActivate: [AuthGuard],
+    component: LoadingComponent,
   },
   {
     path: 'profile',
