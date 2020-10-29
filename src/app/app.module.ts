@@ -53,7 +53,6 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     // 👇 update AuthModule
     AuthModule.forRoot({
       ...env.auth,
-      redirectUri: `${window.location.origin}/callback`,
       httpInterceptor: {
         allowedList: [`${env.dev.serverUrl}/api/messages/protected-message`],
       },
