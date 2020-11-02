@@ -1,6 +1,17 @@
 # Easy User Authentication for Angular Apps
 
-This repository hosts an Angular project that defines a Single-Page Application (SPA). You'll secure access to some of its routes using Auth0 User Authentication.
+This repository hosts the application that you create by following the ["Complete Guide to Angular User Authentication with Auth0"](https://auth0.com/blog/complete-guide-to-angular-user-authentication/).
+
+That security guide helps developers learn how to secure a Angular application by implementing user authentication. It enhances a Angular application to practice the following security concepts:
+
+- Add user login and logout.
+- Retrieve user information.
+- Protect application routes.
+- Call protected endpoints from an API.
+
+The guide uses the [Auth0 Angular SDK](https://github.com/auth0/auth0-angular) to secure Angular applications, which provides Angular developers with an easier way to add user authentication to Angular applications using Observables and HTTP Interceptors.
+
+[Check it out!](https://auth0.com/blog/complete-guide-to-angular-user-authentication/)
 
 ## Get Started
 
@@ -18,13 +29,13 @@ Once you sign in, Auth0 takes you to the [Dashboard](https://manage.auth0.com/).
 
 Then, click the "Create Application" button. A modal opens up with a form to provide a name for the application and choose its type.
 
-- **Name:** Auth0 React Sample
+- **Name:** Auth0 Angular Sample
 
 - **Application Type:** Single Page Web Applications
 
 Click the "Create" button to complete the process. Your Auth0 application page loads up.
 
-Your React application will redirect users to Auth0 whenever they trigger an authentication request. Auth0 will present them with a login page. Once they log in, Auth0 will redirect them back to your React application. For that redirecting to happen securely, you must specify in your **Auth0 Application Settings** the URLs to which Auth0 can redirect users once it authenticates them.
+Your Angular application will redirect users to Auth0 whenever they trigger an authentication request. Auth0 will present them with a login page. Once they log in, Auth0 will redirect them back to your Angular application. For that redirecting to happen securely, you must specify in your **Auth0 Application Settings** the URLs to which Auth0 can redirect users once it authenticates them.
 
 As such, click on the "Settings" tab of your Auth0 Application page and fill in the following values:
 
@@ -49,7 +60,7 @@ http://localhost:4040
 
 **Scroll down and click the "Save Changes" button.**
 
-Open the React starter project, `auth0-angular-sample`, and create a `auth_config.json` file under the project directory:
+Open the Angular starter project, `auth0-angular-sample`, and create a `auth_config.json` file under the project directory:
 
 ```bash
 touch auth_config.json
@@ -66,9 +77,15 @@ Populate `auth0-angular-sample` as follows:
 }
 ```
 
-The value of `domain` is the "Domain" value from the "Settings".
+Head back to your Auth0 application page. Follow these steps to get the `domain` and `clientId` values:
 
-The value of `clientId` is the "Client ID" value from the "Settings".
+![Auth0 application settings to enable user authentication](https://cdn.auth0.com/blog/complete-guide-to-user-authentication/auth0-application-settings.png)
+
+1. Click on the "Settings" tab, if you haven't already.
+
+2. Use the "Domain" value from the "Settings" as the value of `domain` in `auth_config.json`.
+
+3. Use the "Client ID" value from the "Settings" as the value of `clientId` in `auth_config.json`.
 
 ## Run the Project
 
@@ -83,6 +100,8 @@ The application runs by on port `4040` to mitigate conflicting with other client
 Visit [`http://localhost:4040/`](http://localhost:4040/) to access the starter application.
 
 ## Set up the Demo API
+
+You can set up this Express demo server to test making secure API calls from your Angular application.
 
 ### Get the Express API demo
 
@@ -126,7 +145,7 @@ https://express.sample
 
 With these values in place, hit the "Create" button.
 
-Now, click on the "Quick Start" tab of your Auth0 API page. This page presents instructions on how to set up different APIs. From the code box, choose "Node.js". Keep this page open as you'll be using the values next.
+Keep this page open as you'll be using the values next.
 
 Create a `.env` file for the API Server under the `auth0-express-sample` directory:
 
@@ -143,32 +162,31 @@ AUTH0_AUDIENCE=
 AUTH0_ISSUER_URL=
 ```
 
-Head back to the "Node.js" code snippet from the Auth0 API "Quick Start" page. Locate the definition of `jwtCheck`:
+Head back to your Auth0 API page, and **follow these steps to get the Auth0 Audience**:
 
-```javascript
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: "https://<TENANT-NAME>.auth0.com/.well-known/jwks.json",
-  }),
-  audience: "https://express.sample", // 👈 AUTH0_AUDIENCE value
-  issuer: "https://<TENANT-NAME>.auth0.com/", // 👈 AUTH0_ISSUER_URL value
-  algorithms: ["RS256"],
-});
-```
+![Get the Auth0 Audience to configure an API](https://cdn.auth0.com/blog/complete-guide-to-user-authentication/get-the-auth0-audience.png)
 
-Look at the object that the `jwt` function takes as an argument and use the following properties to complete the values of your `.env` file:
+1. Click on the **"Settings"** tab.
 
-The `audience` property is the value of `AUTH0_AUDIENCE`.
+2. Locate the **"Identifier"** field and copy its value.
 
-The `issuer` property is the value of `AUTH0_ISSUER_URL`.
+3. Paste the "Identifier" value as the value of `AUTH0_AUDIENCE` in `.env`.
 
-> Do not include the quotes, only the string value.
+Now, **follow these steps to get the Auth0 Domain value**:
+
+1. Click on the **"Test"** tab.
+2. Locate the section called **"Asking Auth0 for tokens from my application"**.
+3. Click on the **cURL** tab to show a mock `POST` request.
+4. Copy your Auth0 domain, which is _part_ of the `--url` parameter value: `tenant-name.region.auth0.com`.
+5. Paste the Auth0 domain value as the value of `AUTH0_DOMAIN` in `.env`.
+
+> **Tips to get the Auth0 Domain**
+> - The Auth0 Domain is the substring between the protocol, `https://` and the path `/oauth/token`.
+> - The Auth0 Domain follows this pattern: `tenant-name.region.auth0.com`.
+> - The `region` subdomain (`au`, `us`, or `eu`) is optional. Some Auth0 Domains don't have it.
 
 With the `.env` configuration values set, run the API server by issuing the following command:
- 
+
 ```bash
 npm start
 ```
