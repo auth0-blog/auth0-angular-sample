@@ -147,19 +147,19 @@ With these values in place, hit the "Create" button.
 
 Keep this page open as you'll be using the values next.
 
-Create a `.env` file for the API Server under the `auth0-express-sample` directory:
+Create a `.env` file for the API Server under the `auth0-express-js-sample` directory:
 
 ```bash
 touch .env
 ```
 
-Populate this `auth0-express-sample/.env` file as follows:
+Populate this `auth0-express-js-sample/.env` file as follows:
 
 ```bash
 SERVER_PORT=6060
 CLIENT_ORIGIN_URL=http://localhost:4040
 AUTH0_AUDIENCE=
-AUTH0_ISSUER_URL=
+AUTH0_DOMAIN=
 ```
 
 Head back to your Auth0 API page, and **follow these steps to get the Auth0 Audience**:
