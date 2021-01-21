@@ -43,7 +43,7 @@ As such, click on the "Settings" tab of your Auth0 Application page and fill in 
 **Allowed Callback URLs**
 
 ```bash
-http://localhost:4040
+http://localhost:4040/callback
 ```
 
 **Allowed Logout URLs**
