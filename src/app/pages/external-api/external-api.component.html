@@ -15,7 +15,7 @@
     <button (click)="callApi()" type="button" class="btn btn-primary">
       Get Public Message
     </button>
-    <button (click)="callSecureApi()" type="button" class="btn btn-primary">
+    <button *ngIf="auth.isAuthenticated$ | async" (click)="callSecureApi()" type="button" class="btn btn-primary">
       Get Protected Message
     </button>
   </div>

@@ -43,13 +43,13 @@ As such, click on the "Settings" tab of your Auth0 Application page and fill in 
 **Allowed Callback URLs**
 
 ```bash
-http://localhost:4040
+http://localhost:4040, http://localhost:4040/callback
 ```
 
 **Allowed Logout URLs**
 
 ```bash
-http://localhost:4040
+http://localhost:4040, http://localhost:4040/external-api
 ```
 
 **Allowed Web Origins**
@@ -66,7 +66,7 @@ Open the Angular starter project, `auth0-angular-sample`, and create a `auth_con
 touch auth_config.json
 ```
 
-Populate `auth0-angular-sample` as follows:
+Populate `auth_config.json` as follows:
 
 ```bash
 {
@@ -98,6 +98,19 @@ npm start
 The application runs by on port `4040` to mitigate conflicting with other client applications you may be running.
 
 Visit [`http://localhost:4040/`](http://localhost:4040/) to access the starter application.
+
+## Test the Login Routing
+
+Once you run the application, click on the "External API" tab.
+
+The "External API" page is both a public and a protected page. Angular renders different functionality depending on your authentication status. As such, if you initiate the login transaction from this page, Auth0 should return you to this page once it completes the authentication process &mdash not the homepage. Otherwise, your end-users may get a confusing user experience.
+
+Try that out!
+
+- Click on the "Log in" button from the "External API" page. 
+- After you log in with Auth0 using the Universal Login Page, Auth0 should return you to the "External API" page.
+
+If you also log out from this page, you should remain in the page and see its public resources.
 
 ## Set up the Demo API
 

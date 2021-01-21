@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment as env } from '../../../environments/environment';
+import { AuthService } from '@auth0/auth0-angular';
 
 interface Message {
   message: string;
@@ -16,9 +17,11 @@ interface Message {
 export class ExternalApiComponent implements OnInit {
   message: string = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(window.location.href);
+  }
 
   callApi(): void {
     this.http

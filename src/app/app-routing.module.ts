@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'external-api',
     component: ExternalApiComponent,
-    canActivate: [AuthGuard],
+  },
+  // create empty routes in Angular: https://stackoverflow.com/a/39681085
+  {
+    path: 'callback',
+    children: [],
   },
 ];
 
