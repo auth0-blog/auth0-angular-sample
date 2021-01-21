@@ -24,6 +24,10 @@ const routes: Routes = [
     component: ExternalApiComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'callback',
+    children: [],
+  },
 ];
 
 @NgModule({
